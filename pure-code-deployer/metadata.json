@@ -1,0 +1,6 @@
+{
+  "name": "Takur Perfume",
+  "description": "A luxury perfume boutique featuring high-end original fragrances, secure Telegram inquiries, and immersive elegant design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
