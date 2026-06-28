@@ -449,7 +449,7 @@ export default function App() {
           </div>
         </nav>
 
-        {/* ===== HERO COMPONENT ===== */}
+        {/* ===== HERO SECTION ===== */}
         <section id="hero" style={{ position: 'relative', width: '100%', height: '100dvh', overflow: 'hidden', backgroundColor: '#0a0a0a' }}>
           <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', opacity: videoReady ? 1 : 0, transition: 'opacity 1s ease-in-out', overflow: 'hidden' }}>
             <div 
