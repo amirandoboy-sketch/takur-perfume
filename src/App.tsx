@@ -460,13 +460,13 @@ export default function App() {
             />
           </div>
 
-          {/* ===== DARK OVERLAY TO HIDE YOUTUBE PLAY BUTTON ===== */}
+          {/* DARK OVERLAY TO HIDE YOUTUBE PLAY BUTTON */}
           <div style={{ position: 'absolute', inset: 0, zIndex: 2, background: 'radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 40%)', pointerEvents: 'none' }} />
 
           {/* INTERACTION SHIELD */}
           <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: 'transparent', pointerEvents: 'auto' }} />
 
-          {/* VIGNETTE (existing) */}
+          {/* VIGNETTE */}
           <div style={{ position: 'absolute', inset: 0, zIndex: 4, background: 'radial-gradient(circle at center, rgba(0,0,0,0) 35%, rgba(0,0,0,0.55) 100%), linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.7) 100%)', pointerEvents: 'none' }} />
           
           {/* CONTENT */}
@@ -475,8 +475,8 @@ export default function App() {
             <span className="hero-subtitle" style={{ letterSpacing: '6px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', fontWeight: 600 }}>THE NEW STANDARD</span>
             <h1 className="hero-title" style={{ fontFamily: 'Georgia, serif', fontWeight: '400', margin: '0', letterSpacing: '1px' }}>Collection Nº 05</h1>
             
-            {/* PERFUME WRAPPER – MOVED DOWN with margin-top */}
-            <div className="perfume-wrapper" style={{ marginTop: '15px' }}>
+            {/* PERFUME WRAPPER – MOVED LOWER */}
+            <div className="perfume-wrapper" style={{ marginTop: '22px' }}>
               <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '110px', height: '150px', backgroundColor: 'transparent', animation: 'luxuryGoldGlow 4s ease-in-out infinite', willChange: 'transform, filter' }}>
                 <div style={{ width: '26px', height: '4px', backgroundColor: '#d4af37', borderRadius: '3px 3px 0 0' }} />
                 <div style={{ width: '22px', height: '24px', border: '1.5px solid #d4af37', borderTop: 'none', borderBottom: 'none', backgroundColor: '#000000' }} />
