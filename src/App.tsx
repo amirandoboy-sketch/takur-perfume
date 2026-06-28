@@ -475,8 +475,8 @@ export default function App() {
             <span className="hero-subtitle" style={{ letterSpacing: '6px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', fontWeight: 600 }}>THE NEW STANDARD</span>
             <h1 className="hero-title" style={{ fontFamily: 'Georgia, serif', fontWeight: '400', margin: '0', letterSpacing: '1px' }}>Collection Nº 05</h1>
             
-            {/* PERFUME WRAPPER – MOVED LOWER */}
-            <div className="perfume-wrapper" style={{ marginTop: '22px' }}>
+            {/* ===== PERFUME WRAPPER – MOVED DOWN ===== */}
+            <div className="perfume-wrapper" style={{ marginTop: '35px', transform: 'translateY(10px)' }}>
               <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '110px', height: '150px', backgroundColor: 'transparent', animation: 'luxuryGoldGlow 4s ease-in-out infinite', willChange: 'transform, filter' }}>
                 <div style={{ width: '26px', height: '4px', backgroundColor: '#d4af37', borderRadius: '3px 3px 0 0' }} />
                 <div style={{ width: '22px', height: '24px', border: '1.5px solid #d4af37', borderTop: 'none', borderBottom: 'none', backgroundColor: '#000000' }} />
