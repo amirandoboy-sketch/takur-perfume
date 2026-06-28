@@ -224,6 +224,7 @@ export default function App() {
   const [nameInput, setNameInput] = useState('');
   const [phoneInput, setPhoneInput] = useState('');
   const [msgInput, setMsgInput] = useState('');
+  const [formError, setFormError] = useState('');
 
   // --- Toast States ---
   const [toastMsg, setToastMsg] = useState('');
@@ -372,11 +373,23 @@ export default function App() {
   };
 
   const sendMsg = () => {
-    if (!nameInput.trim() || !phoneInput.trim()) {
-      showToast('Please fill in your name and phone!');
+    setFormError('');
+    if (!nameInput.trim() || !msgInput.trim()) {
+      const err = 'Please fill out both the Name and Message fields.';
+      setFormError(err);
+      showToast(err);
       return;
     }
-    const textMessage = `NEW MESSAGE / ORDER VIA TAKUR PERFUME\n👤 Name: ${nameInput.trim()}\n📞 Phone: ${phoneInput.trim()}\n\n💬 Message / Order Details:\n${msgInput.trim() || 'No additional details provided.'}`;
+    if (phoneInput.trim()) {
+      const phoneRegex = /^[0-9+\s-]+$/;
+      if (!phoneRegex.test(phoneInput.trim()) || !/\d/.test(phoneInput)) {
+        const err = 'Please enter a valid phone number, or leave it blank.';
+        setFormError(err);
+        showToast(err);
+        return;
+      }
+    }
+    const textMessage = `NEW MESSAGE / ORDER VIA TAKUR PERFUME\n👤 Name: ${nameInput.trim()}\n📞 Phone: ${phoneInput.trim() || 'Not provided'}\n\n💬 Message / Order Details:\n${msgInput.trim()}`;
     window.open(`https://t.me/Legend_Takur?text=${encodeURIComponent(textMessage)}`, '_blank');
     showToast('Redirecting to Telegram to send message...');
     setNameInput('');
@@ -546,7 +559,7 @@ export default function App() {
           <div className="product-grid">
             {[
               { id: 'c1', name: 'BOSS THE SCENT', code: 'HUGO BOSS', badge: 'EAU DE PARFUM', img: 'https://res.cloudinary.com/dmghgycec/image/upload/q_auto/f_auto/v1780943963/download_ss3a71.jpg', desc: 'Dark, seductive and masculine. The most iconic Hugo Boss fragrance for the modern man.', notes: 'Ginger, Leather | Cocoa, Vetiver', delay: 'delay-1' },
-              { id: 'c2', name: 'BOSS BOTTLED UNLIMITED', code: 'HUGO BOSS', badge: 'EAU DE TOILETTE', img: 'https://res.cloudinary.com/dmghgycec/image/upload/q_auto/f_auto/v1780943943/2261c816-e9fe-415d-ae24-763565513ce7_lkj0za.jpg', desc: 'Fresh, sporty and clean. An everyday luxury scent that leaves a lasting impression.', notes: 'Grapefruit, Geranium | Sandalwood', delay: 'delay-2' },
+              { id: 'c2', name: 'BOSS BOTTLED UNLIMITED', code: 'HUGO BOSS', badge: 'EAU DE TOILETTE', img: 'https://res.cloudinary.com/dmghgycec/image/upload/v1782596496/boss_bottled_unlimited_clean_1782595594359_wwmduj.jpg', desc: 'Fresh, sporty and clean. An everyday luxury scent that leaves a lasting impression.', notes: 'Grapefruit, Geranium | Sandalwood', delay: 'delay-2' },
               { id: 'c3', name: 'BLEU DE CHANEL', code: 'CHANEL', badge: 'EAU DE PARFUM', img: 'https://res.cloudinary.com/dmghgycec/image/upload/q_auto/f_auto/v1780944183/bleu_chanel_box_1780930715771_bvvivc.jpg', desc: 'An unexpected and undeniably bold masculine scent. Clean, deep, and intensely woody.', notes: 'Grapefruit, Mint, Incense, Ginger', delay: 'delay-3' }
             ].map((p: Product) => (
               <div className={`product-card reveal ${p.delay}`} key={p.id}>
@@ -605,17 +618,22 @@ export default function App() {
             
             <div className="contact-form-box reveal delay-2">
               <div className="form-title">Send a Message</div>
+              {formError && (
+                <div style={{ color: '#ef4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', padding: '10px 14px', borderRadius: '6px', marginBottom: '16px', fontSize: '0.85rem', fontWeight: 500, lineHeight: 1.4 }}>
+                  ⚠️ {formError}
+                </div>
+              )}
               <div className="form-group">
-                <label className="form-label">YOUR NAME</label>
-                <input className="form-input" type="text" placeholder="Enter your name" value={nameInput} onChange={(e) => setNameInput(e.target.value)} />
+                <label className="form-label">YOUR NAME <span style={{ color: '#ef4444', marginLeft: '3px' }}>*</span></label>
+                <input className="form-input" type="text" placeholder="Enter your name" value={nameInput} onChange={(e) => { setNameInput(e.target.value); if (formError) setFormError(''); }} />
               </div>
               <div className="form-group">
-                <label className="form-label">PHONE NUMBER</label>
-                <input className="form-input" type="tel" placeholder="Your phone number" value={phoneInput} onChange={(e) => setPhoneInput(e.target.value)} />
+                <label className="form-label">PHONE NUMBER <span style={{ fontSize: '0.85em', fontWeight: 'normal', opacity: 0.75, marginLeft: '6px', textTransform: 'none' }}>(Optional)</span></label>
+                <input className="form-input" type="tel" placeholder="Your phone number" value={phoneInput} onChange={(e) => { setPhoneInput(e.target.value); if (formError) setFormError(''); }} />
               </div>
               <div className="form-group">
-                <label className="form-label">MESSAGE / ORDER</label>
-                <textarea id="msg-input" className="form-textarea" placeholder="Which perfume do you want? Any questions?" value={msgInput} onChange={(e) => setMsgInput(e.target.value)} />
+                <label className="form-label">MESSAGE / ORDER <span style={{ color: '#ef4444', marginLeft: '3px' }}>*</span></label>
+                <textarea id="msg-input" className="form-textarea" placeholder="Which perfume do you want? Any questions?" value={msgInput} onChange={(e) => { setMsgInput(e.target.value); if (formError) setFormError(''); }} />
               </div>
               <button className="btn-send" onClick={sendMsg}>SEND MESSAGE →</button>
             </div>
